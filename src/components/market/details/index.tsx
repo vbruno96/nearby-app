@@ -1,13 +1,12 @@
 import { Text, View } from 'react-native'
 
-import { colors } from "@/styles/theme"
-import { categoriesIcons } from '@/utils/categories-icons'
-import { IconMapPin, IconPhone, IconScan, IconTicket } from '@tabler/icons-react-native'
+import { IconMapPin, IconPhone } from '@tabler/icons-react-native'
 import { styles } from "./styles"
 import { Info } from '../info'
 import { Coupons } from '../coupons'
 import { CouponUsed } from '../couponUsed'
 import { Rule } from '../rule'
+import { Heading } from '@/components/title'
 
 export interface Market {
   address: string;
@@ -32,24 +31,15 @@ interface DetailsProps {
 }
 
 export function Details({ data: market }: DetailsProps) {
-  const Icon = categoriesIcons[market.categoryId]
-
   return (
     <View style={styles.container}>
       <View
         style={styles.header}
       >
-        <View style={styles.title}>
-          <Text
-            style={styles.name}
-          >
-            {market.name}
-          </Text>
-          <Icon
-            size={24}
-            color={colors.green.light}
-          />
-        </View>
+        <Heading
+          categoryId={market.categoryId}
+          title={market.name}
+        />
         <Text style={styles.description}>
           {market.description}
         </Text>

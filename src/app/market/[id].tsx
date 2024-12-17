@@ -1,10 +1,10 @@
 
 import { useEffect, useRef, useState } from 'react'
-import { Alert, Modal, Text, View } from 'react-native'
+import { Alert, Modal, View } from 'react-native'
 import { IconArrowLeft, IconMapPin, IconPhone } from '@tabler/icons-react-native'
-import MapView, { Marker } from 'react-native-maps'
-import { router, useLocalSearchParams } from 'expo-router'
 import { CameraView, useCameraPermissions } from 'expo-camera'
+import { router, useLocalSearchParams } from 'expo-router'
+import MapView, { Marker } from 'react-native-maps'
 
 import { api } from '@/services/api'
 
@@ -16,6 +16,8 @@ import { Footer } from '@/components/market/footer'
 import { Button } from '@/components/button'
 import { colors, fontFamily } from '@/styles/theme'
 import { Info } from '@/components/market/info'
+import { Heading } from '@/components/title'
+import { Coupons } from '@/components/market/coupons'
 
 export default function Market() {
   const [_, requestPermission] = useCameraPermissions()
@@ -26,8 +28,8 @@ export default function Market() {
 
   const [market, setMarket] = useState({} as MarketDetailsProps)
   const [ isLoading, setIsLoading ] = useState(true)
-  const [ isModalReadQRCodeOpen, setIsModalReadQRCodeOpen ] = useState(false);
-  const [ isModalMarketAddressOpen, setIsModalMarketAddressOpen ] = useState(false);
+  const [ isModalReadQRCodeOpen, setIsModalReadQRCodeOpen ] = useState(false)
+  const [ isModalMarketAddressOpen, setIsModalMarketAddressOpen ] = useState(false)
   const [ isFetchingCoupon, setIsFetchingCoupon ] = useState(false)
   const [ coupon, setCoupon ] = useState('')
 
@@ -178,6 +180,8 @@ export default function Market() {
           bottom: 40,
           backgroundColor: colors.gray[100],
           gap: 16,
+          borderWidth: 1,
+          borderColor: colors.gray[200],
           paddingHorizontal: 24,
           paddingBottom: 28,
           paddingTop: 20,
@@ -187,15 +191,16 @@ export default function Market() {
           <View style={{
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'center'
+            alignItems: 'center',
           }}>
-            <Text style={{
-              color: colors.gray[600],
-              fontFamily: fontFamily.bold,
-              fontSize: 20,
-            }}>
-              {market.name}
-            </Text>
+            <Heading
+              categoryId={market.categoryId}
+              title={market.name}
+            />
+            <Coupons
+              amount={market.coupons}
+              variant='small'
+            />
           </View>
           <Info description={market.address} icon={IconMapPin} />
           <Info description={market.phone} icon={IconPhone} />

@@ -14,16 +14,6 @@ export const styles = StyleSheet.create({
   header: {
     gap: 10,
   },
-  title: {
-    flexDirection: 'row',
-    gap: 8,
-    alignItems: 'center',
-  },
-  name: {
-    color: colors.gray[600],
-    fontFamily: fontFamily.bold,
-    fontSize: 20,
-  },
   description: {
     color: colors.gray[500],
     fontFamily: fontFamily.regular,
