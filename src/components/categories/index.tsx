@@ -20,10 +20,9 @@ export function Categories({ data, onSelect, selected }: CategoriesProps) {
       style={ styles.container }
       contentContainerStyle={ styles.content }
       data={data}
-      keyExtractor={(category) => category.id}
+      keyExtractor={(item) => item.id}
       renderItem={({item}) => (
         <Category
-          key={item.id}
           name={item.name}
           iconId={item.id}
           isSelected={item.id === selected}

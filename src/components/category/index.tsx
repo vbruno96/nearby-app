@@ -11,6 +11,7 @@ type CategoryProps = PressableProps & {
 
 export function Category({ iconId, isSelected = false, name, ...props }: CategoryProps) {
   const Icon = categoriesIcons[iconId]
+  
   return (
     <Pressable
       style={[

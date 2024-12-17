@@ -23,7 +23,12 @@ export function Place({ data, ...props }: PlaceProps) {
       <View style={ styles.content }>
         <View style={ styles.details }>
           <Text style={ styles.title }>{ data.name }</Text>
-          <Text style={ styles.description }>{ data.description }</Text>
+          <Text
+            style={ styles.description }
+            numberOfLines={2}
+          >
+            { data.description }
+          </Text>
         </View>
         <View style={ styles.cupomContainer }>
           <IconTicket size={16} color={colors.red.base} />
